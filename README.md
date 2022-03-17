@@ -1,5 +1,5 @@
 # Heart Care
-*
+Health care AI and IOT powered application - to predict heart disease
 
 ## Version 0.100
 Following are the features used in this application
