@@ -61,8 +61,15 @@ class UserPasswordChangeView(generics.UpdateAPIView):
 
 
 class PredicationViewSet(viewsets.ModelViewSet):
-    queryset = Predication.objects.all()
     serializer_class = PredicationSerializer
-    permission_classes = [permissions.AllowAny]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get_queryset(self):
+        return Predication.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        data = serializer.save()
+        data.user = self.request.user
+        data.save()
 
 

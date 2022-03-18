@@ -5,7 +5,7 @@ from . import views
 app_name = 'api'
 
 router = routers.DefaultRouter()
-router.register(r'predication', views.PredicationViewSet)
+router.register(r'predication', views.PredicationViewSet, basename='prediction')
 
 urlpatterns = [
     path('', include(router.urls)),
