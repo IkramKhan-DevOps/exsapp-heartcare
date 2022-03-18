@@ -2,7 +2,7 @@ from rest_framework import generics, viewsets
 from rest_framework import permissions
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.status import HTTP_200_OK, HTTP_201_CREATED, HTTP_400_BAD_REQUEST
+from rest_framework.status import HTTP_201_CREATED, HTTP_400_BAD_REQUEST
 
 from src.accounts.models import User
 from src.api.models import Predication
@@ -69,8 +69,6 @@ class PredicationViewSet(viewsets.ModelViewSet):
         return Predication.objects.filter(user=self.request.user)
 
     def create(self, request, *args, **kwargs):
-        context = {'message': 'Error in API'}
-        status_code = HTTP_400_BAD_REQUEST
         serializer = PredicationSerializer(data=request.data)
 
         if serializer.is_valid():
@@ -78,9 +76,5 @@ class PredicationViewSet(viewsets.ModelViewSet):
             prediction.user = request.user
             prediction.save()
 
-            context['message'] = 'Predication created successfully'
-            status_code = HTTP_201_CREATED
-
-        return Response(data=context, status=status_code)
-
-
+            return Response(data={'message':'Predication created successfully'}, status=HTTP_201_CREATED)
+        return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
