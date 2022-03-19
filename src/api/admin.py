@@ -10,7 +10,9 @@ from .models import (
 class PredicationAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('user', 'age', 'gender')}),
-        (_('Readings'), {'fields': ('resting_bp_s', 'cholestrol', 'fasting_blood_sugar', 'old_peak', 'st_slope', 'exercise_angina')}),
+        (_('Readings'), {'fields': (
+            'resting_bp_s', 'cholestrol', 'fasting_blood_sugar', 'old_peak', 'st_slope', 'exercise_angina',
+            'max_heart_rate', 'resting_ecg')}),
         (_('Sensors'), {'fields': ('chest_pain_type', 'target')}),
     )
     list_display = ['pk', 'user', 'age', 'gender', 'chest_pain_type', 'cholestrol', 'created_on']
