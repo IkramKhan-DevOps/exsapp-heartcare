@@ -38,4 +38,4 @@ class UserSerializer(serializers.ModelSerializer):
 class PredicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Predication
-        fields = '__all__'
+        exclude = ['user', 'is_active']
