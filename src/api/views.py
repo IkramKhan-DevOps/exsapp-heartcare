@@ -99,6 +99,8 @@ class PredicationViewSet(APIView):
         print(int(target[0][0]))
         predication.target = int(target[0][0])
         predication.save()
+
+
         return Response(data={'Target': predication.target}, status=status.HTTP_201_CREATED)
 
     def get(self, request, format=None):
