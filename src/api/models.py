@@ -38,20 +38,16 @@ class Predication(models.Model):
     user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True, blank=True)
     age = models.PositiveIntegerField()
     gender = models.PositiveIntegerField(choices=GENDER_CHOICES)
-
     resting_bp_s = models.PositiveIntegerField()
     cholestrol = models.PositiveIntegerField()
     fasting_blood_sugar = models.PositiveIntegerField()
     old_peak = models.PositiveIntegerField()
-
     chest_pain_type = models.PositiveIntegerField(choices=CHEST_PAIN_TYPE_CHOICES)
     target = models.PositiveIntegerField(choices=TARGET_CHOICES)
     st_slope = models.PositiveIntegerField(choices=ST_SLOPE_CHOICES)
     exercise_angina = models.PositiveIntegerField(choices=EXERCISE_ANGINA_CHOICES)
-
     resting_ecg = models.PositiveIntegerField(choices=RESTING_ECG_CHOICES)
     max_heart_rate = models.PositiveIntegerField()
-
     is_active = models.BooleanField(default=True)
     created_on = models.DateTimeField(auto_now_add=True)
 
