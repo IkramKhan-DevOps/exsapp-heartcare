@@ -84,23 +84,26 @@ class PredicationViewSet(APIView):
                                   exercise_angina=self.request.data['exercise_angina'],
                                   resting_ecg=self.request.data['resting_ecg'],
                                   max_heart_rate=self.request.data['max_heart_rate'])
-        inp = (int(predication.age), int(predication.resting_bp_s), int(predication.cholestrol),
-               int(predication.fasting_blood_sugar), int(predication.max_heart_rate),
-               int(predication.exercise_angina), int(predication.st_slope), int(predication.gender),
-               1 if predication.chest_pain_type == 1 else 0,
-               1 if predication.chest_pain_type == 3 else 0,
-               1 if predication.chest_pain_type == 2 else 0,
-               1 if predication.resting_ecg == 2 else 0,
-               1 if predication.resting_ecg == 0 else 0,
-               1 if predication.st_slope == 2 else 0,
-               1 if predication.st_slope == 3 else 0)
+        inp = (int(predication.age),
+               int(predication.resting_bp_s),
+               int(predication.cholestrol),
+               int(predication.fasting_blood_sugar),
+               int(predication.max_heart_rate),
+               int(predication.exercise_angina),
+               float(predication.old_peak),
+               int(predication.gender),
+               1 if int(predication.chest_pain_type) == 1 else 0,
+               1 if int(predication.chest_pain_type) == 3 else 0,
+               1 if int(predication.chest_pain_type) == 2 else 0,
+               1 if int(predication.resting_ecg) == 2 else 0,
+               1 if int(predication.resting_ecg) == 0 else 0,
+               1 if int(predication.st_slope) == 2 else 0,
+               1 if int(predication.st_slope) == 3 else 0)
         target = ai_utils.run(inp)
         print('--------------------TARGET------------------------------------')
         print(int(target[0][0]))
         predication.target = int(target[0][0])
         predication.save()
-
-
         return Response(data={'Target': predication.target}, status=status.HTTP_201_CREATED)
 
     def get(self, request, format=None):

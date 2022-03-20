@@ -1,6 +1,5 @@
 from django.db import models
 
-
 """ PLANTS > DISEASES > CANOPIES """
 
 
@@ -41,7 +40,7 @@ class Predication(models.Model):
     resting_bp_s = models.PositiveIntegerField()
     cholestrol = models.PositiveIntegerField()
     fasting_blood_sugar = models.PositiveIntegerField()
-    old_peak = models.PositiveIntegerField()
+    old_peak = models.FloatField(null=True, blank=True, default=None)
     chest_pain_type = models.PositiveIntegerField(choices=CHEST_PAIN_TYPE_CHOICES)
     target = models.PositiveIntegerField(choices=TARGET_CHOICES)
     st_slope = models.PositiveIntegerField(choices=ST_SLOPE_CHOICES)
