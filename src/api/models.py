@@ -34,7 +34,7 @@ class Predication(models.Model):
         (1, 'Patient is suffering from heart risk'),
     )
 
-    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('accounts.User', on_delete=models.CASCADE, null=True, blank=True)
     age = models.PositiveIntegerField()
     gender = models.PositiveIntegerField(choices=GENDER_CHOICES)
     resting_bp_s = models.PositiveIntegerField()
